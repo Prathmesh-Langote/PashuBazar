@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PashuBazar Admin</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <!-- Admin Login -->
+    <div class="login-container" id="loginSection">
+        <form id="adminLoginForm">
+            <h1>PashuBazar</h1>
+            <h2>Admin Login</h2>
+
+            <label for="username">Username</label>
+            <input type="text" id="username"
+                   placeholder="Enter admin username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password"
+                   placeholder="Enter admin password" required>
+
+            <button type="submit">Login</button>
+            <p id="loginMessage"></p>
+        </form>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="dashboardSection" hidden>
+        <header class="dashboard-header">
+            <div>
+                <h1>PashuBazar Admin</h1>
+                <p>Manage animal listings</p>
+            </div>
+            <button id="logoutButton" type="button">Logout</button>
+        </header>
+
+        <main class="dashboard-main">
+            <h2>Animal Listings</h2>
+            <p id="dashboardMessage"></p>
+            
+<div class="dashboard-stats">
+    <div class="stat-card">
+        <h3>Total Listings</h3>
+        <p id="totalListings">0</p>
+    </div>
+    <div class="stat-card">
+        <h3>Categories</h3>
+        <p id="totalCategories">0</p>
+    </div>
+</div>
+
+<div class="filters">
+    <input id="searchInput"
+           type="search"
+           placeholder="Search breed or location">
+
+    <select id="categoryFilter">
+        <option value="">All Categories</option>
+    </select>
+
+    <input id="breedFilter"
+           type="text"
+           placeholder="Filter by breed">
+
+    <input id="locationFilter"
+           type="text"
+           placeholder="Filter by location">
+
+    <button id="clearFilters" type="button">
+        Clear Filters
+    </button>
+</div>
+
+            <div id="animalList" class="animal-list"></div>
+        </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>PashuBazar</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="nav">
+
+        <div class="logo" onclick="showPage('home')">
+
+            <i>🐄</i>
+
+            <div>
+
+                <b data-t="brand">PashuBazar</b>
+
+                <small data-t="sub">
+                    Livestock Connection Platform
+                </small>
+
+            </div>
+
+        </div>
+
+        <button
+            class="menu"
+            onclick="document.getElementById('links').classList.toggle('open')">
+            ☰
+        </button>
+
+        <nav class="links" id="links">
+
+            <button
+                class="navbtn active"
+                data-page="home"
+                onclick="showPage('home')"
+                data-t="home">
+                Home
+            </button>
+
+            <button
+                class="navbtn"
+                data-page="buy"
+                onclick="showPage('buy')"
+                data-t="buy">
+                Buy Animal
+            </button>
+
+            <button
+                class="navbtn"
+                data-page="sell"
+                onclick="showPage('sell')"
+                data-t="sell">
+                Sell Animal
+            </button>
+
+
+           <button
+                class="navbtn"
+                data-page="my-listings"
+                data-t="my-listings"
+                onclick="showPage('my-listings'); loadMyListings()">
+                My Listings
+            </button>
+
+            <button onclick="showPage('favorites')" data-t="favorites">
+                ❤️ Favorites
+            </button>
+            
+            <button
+                class="navbtn auth-login"
+                id="loginNav"
+                onclick="openM('login')"
+                data-t="login">
+                Login
+            </button>
+
+            <button
+                class="navbtn auth-login"
+                id="registerNav"
+                onclick="openM('register')"
+                data-t="register">
+                Create Account
+            </button>
+
+            <button
+                class="navbtn auth-logout"
+                id="logoutNav"
+                onclick="logout()"
+                style="display:none"
+                data-t="logout">
+                Logout
+            </button>
+
+            <div class="langs">
+
+                <button
+                    class="lang active"
+                    id="en"
+                    onclick="language('en')">
+                    English
+                </button>
+
+                <button
+                    class="lang"
+                    id="mr"
+                    onclick="language('mr')">
+                    मराठी
+                </button>
+
+            </div>
+
+            <a href="admin.html" class="admin-btn">Admin</a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main id="home" class="page active">
+
+    <section class="hero">
+
+        <div class="wrap">
+
+            <span class="badge" data-t="badge">
+                🐄 Direct Farmer-to-Buyer Connection
+            </span>
+
+            <h1 data-t="hero">
+                Find the Right Animal from the Right Farmer
+            </h1>
+
+            <p data-t="herop">
+                PashuBazar connects livestock buyers and farmers directly.
+                Explore local animals, contact the seller, inspect the animal
+                and complete your purchase offline.
+            </p>
+
+            <div class="actions">
+
+                <button
+                    class="btn primary"
+                    onclick="showPage('buy')"
+                    data-t="find">
+                    Find Animals
+                </button>
+
+                <button
+                    class="btn white"
+                    onclick="showPage('sell')"
+                    data-t="sellbtn">
+                    Sell Your Animal
+                </button>
+
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <b data-t="s1">
+                        Direct Connection
+                    </b>
+
+                    <span data-t="s1p">
+                        Connect with farmers
+                    </span>
+                </div>
+
+                <div class="stat">
+                    <b data-t="s2">
+                        Local Listings
+                    </b>
+
+                    <span data-t="s2p">
+                        Animals near your area
+                    </span>
+                </div>
+
+                <div class="stat">
+                    <b data-t="s3">
+                        Offline Purchase
+                    </b>
+
+                    <span data-t="s3p">
+                        Inspect & negotiate directly
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="wrap">
+
+        <div class="title">
+
+            <h2 data-t="howtitle">
+                How PashuBazar Works
+            </h2>
+
+            <p data-t="howsub">
+                A simple process for farmers and buyers
+            </p>
+
+        </div>
+
+        <div class="grid4">
+
+            <div class="card">
+
+                <div class="stepno">
+                    1
+                </div>
+
+                <h3 data-t="findh">
+                    Find
+                </h3>
+
+                <p data-t="findp">
+                    Search for animals by type, breed, location, age and price.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stepno">
+                    2
+                </div>
+
+                <h3 data-t="contacth">
+                    Contact
+                </h3>
+
+                <p data-t="contactp">
+                    Call or WhatsApp the farmer directly.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stepno">
+                    3
+                </div>
+
+                <h3 data-t="inspecth">
+                    Inspect
+                </h3>
+
+                <p data-t="inspectp">
+                    Visit the seller and check the animal yourself.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stepno">
+                    4
+                </div>
+
+                <h3 data-t="buyh">
+                    Negotiate & Buy
+                </h3>
+
+                <p data-t="buyp">
+                    Discuss the price and complete the purchase offline.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="wrap">
+
+        <div class="title">
+
+            <h2 data-t="explore">
+                Explore Animals
+            </h2>
+
+            <p data-t="exploresub">
+                Choose a category to start finding livestock
+            </p>
+
+        </div>
+
+        <div class="grid4 categories">
+
+            <div
+                class="card"
+                onclick="filterCat('Cow')">
+
+                <div class="cat">
+                    🐄
+                </div>
+
+                <h3 data-t="cow">
+                    Cows
+                </h3>
+
+                <p data-t="cowp">
+                    Dairy & local breeds
+                </p>
+
+            </div>
+
+
+            <div
+                class="card"
+                onclick="filterCat('Buffalo')">
+
+                <div class="cat">
+                    🐃
+                </div>
+
+                <h3 data-t="buffalo">
+                    Buffaloes
+                </h3>
+
+                <p data-t="buffalop">
+                    Milk & farm animals
+                </p>
+
+            </div>
+
+
+            <div
+                class="card"
+                onclick="filterCat('Goat')">
+
+                <div class="cat">
+                    🐐
+                </div>
+
+                <h3 data-t="goat">
+                    Goats
+                </h3>
+
+                <p data-t="goatp">
+                    Local & popular breeds
+                </p>
+
+            </div>
+
+
+            <div
+                class="card"
+                onclick="filterCat('Sheep')">
+
+                <div class="cat">
+                    🐑
+                </div>
+
+                <h3 data-t="sheep">
+                    Sheep
+                </h3>
+
+                <p data-t="sheepp">
+                    Healthy local livestock
+                </p>
+
+            </div>
+
+
+            <div
+                class="card"
+                onclick="filterCat('Horse')">
+
+                <div class="cat">
+                    🐎
+                </div>
+
+                <h3 data-t="horse">
+                    Horses
+                </h3>
+
+                <p data-t="horsep">
+                    Local & traditional breeds
+                </p>
+
+            </div>
+
+
+            <div
+                class="card"
+                onclick="filterCat('Poultry')">
+
+                <div class="cat">
+                    🐔
+                </div>
+
+                <h3 data-t="poultry">
+                    Poultry
+                </h3>
+
+                <p data-t="poultryp">
+                    Chicken & poultry breeds
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="why">
+
+        <div class="wrap">
+
+            <div class="title">
+
+                <h2 data-t="why">
+                    Why PashuBazar?
+                </h2>
+
+                <p data-t="whysub">
+                    Designed for simple and direct livestock connection
+                </p>
+
+            </div>
+
+
+            <div class="grid4">
+
+                <div class="card">
+
+                    <h3 data-t="f1">
+                        🤝 Direct Connection
+                    </h3>
+
+                    <p data-t="f1p">
+                        Buyers can communicate directly with livestock owners.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3 data-t="f2">
+                        📍 Local Livestock
+                    </h3>
+
+                    <p data-t="f2p">
+                        Find animals listed by farmers in nearby locations.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3 data-t="f3">
+                        🔍 Inspect First
+                    </h3>
+
+                    <p data-t="f3p">
+                        Visit and inspect the animal before making a decision.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <h3 data-t="f4">
+                        📱 Easy to Use
+                    </h3>
+
+                    <p data-t="f4p">
+                        Simple interface with clear information and contact options.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="cta">
+
+        <h2 data-t="ctah">
+            Looking for a Livestock Animal?
+        </h2>
+
+        <p data-t="ctap">
+            Start exploring local listings and connect directly with farmers.
+        </p>
+
+        <button
+            class="btn primary"
+            onclick="showPage('buy')"
+            data-t="browse">
+            Browse Animals
+        </button>
+
+    </section>
+
+</main>
+
+
+<main id="buy" class="page">
+
+    <section class="header">
+
+        <div class="wrap">
+
+            <h1 data-t="buytitle">
+                Buy Animal
+            </h1>
+
+            <p data-t="buysub">
+                Find animals, contact the seller, inspect them and complete the purchase offline.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="wrap">
+
+        <div class="filters">
+
+            <input
+                id="search"
+                class="field"
+                data-ph="searchph"
+                placeholder="Search breed, animal or location..."
+                oninput="render()">
+
+
+            <select
+                id="catfilter"
+                class="field"
+                onchange="render()">
+
+                <option
+                    value=""
+                    data-t="allcat">
+                    All Categories
+                </option>
+
+                <option
+                    value="Cow"
+                    data-t="cow">
+                    Cow
+                </option>
+
+                <option
+                    value="Buffalo"
+                    data-t="buffalo">
+                    Buffalo
+                </option>
+
+                <option
+                    value="Goat"
+                    data-t="goat">
+                    Goat
+                </option>
+
+                <option
+                    value="Sheep"
+                    data-t="sheep">
+                    Sheep
+                </option>
+
+                <option
+                    value="Horse"
+                    data-t="horse">
+                    Horse
+                </option>
+
+                <option
+                    value="Poultry"
+                    data-t="poultry">
+                    Poultry
+                </option>
+
+            </select>
+
+
+            <select
+                id="gender"
+                class="field"
+                onchange="render()">
+
+                <option
+                    value=""
+                    data-t="allgender">
+                    All Gender
+                </option>
+
+                <option
+                    value="Male"
+                    data-t="male">
+                    Male
+                </option>
+
+                <option
+                    value="Female"
+                    data-t="female">
+                    Female
+                </option>
+
+            </select>
+
+
+            <button
+                class="btn green"
+                onclick="clearF()"
+                data-t="clear">
+                Clear
+            </button>
+
+        </div>
+
+
+        <div
+            id="animals"
+            class="animals">
+        </div>
+
+    </section>
+
+</main>
+
+  <!-- Favorites Page -->
+    <section id="favorites" class="page">
+        <h2 data-t="favorites-title">❤️ Favorite Animals</h2>
+        <p>Your saved animals are shown here.</p>
+
+        <div id="favoriteAnimals" class="animal-grid"></div>
+    </section>
+
+
+<main id="sell" class="page">
+
+    <section class="header">
+
+        <div class="wrap">
+
+            <h1 data-t="sellt">
+                Sell Animal
+            </h1>
+
+            <p data-t="sells">
+                List your animal and let interested buyers contact you directly.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="wrap">
+
+<form class="form" onsubmit="submitForm(event)">
+  <div class="title" style="text-align:left">
+    <h2 data-t="listing">Animal Listing Information</h2>
+    <p data-t="listingsub">Enter clear and accurate details about your animal.</p>
+  </div>
+
+  <div class="formgrid">
+    <div class="group">
+      <label data-t="catlabel">Animal Category</label>
+      <select id="sellCategory" class="field" required onchange="categoryChanged()">
+        <option value="" data-t="selectcat">Select Category</option>
+        <option value="Cow" data-t="cow">Cow</option>
+        <option value="Buffalo" data-t="buffalo">Buffalo</option>
+        <option value="Goat" data-t="goat">Goat</option>
+        <option value="Sheep" data-t="sheep">Sheep</option>
+        <option value="Horse" data-t="horse">Horse</option>
+        <option value="Poultry" data-t="poultry">Poultry</option>
+      </select>
+
+      <button type="button" class="add-option" onclick="addNewCategory()">
+        + <span data-t="addcategory">Add New Category</span>
+      </button>
+    </div>
+
+    <div class="group">
+      <label data-t="breedlabel">Breed</label>
+      <input id="sellBreed" class="field" required data-ph="breedph" placeholder="Enter breed">
+    </div>
+
+    <div class="group">
+      <label data-t="agelabel">Age</label>
+      <input id="sellAge" class="field" required data-ph="ageph" placeholder="Example: 4 years">
+    </div>
+
+    <div class="group">
+      <label data-t="genderlabel">Gender</label>
+      <select id="sellGender" class="field">
+        <option value="" data-t="selectgender">Select Gender</option>
+        <option value="Male" data-t="male">Male</option>
+        <option value="Female" data-t="female">Female</option>
+      </select>
+    </div>
+
+    <div class="group">
+      <label data-t="healthlabel">Health Status</label>
+      <select id="sellHealth" class="field">
+        <option value="Healthy" data-t="healthy">Healthy</option>
+        <option value="Needs Care" data-t="care">Needs Care</option>
+      </select>
+    </div>
+
+    <div class="group">
+      <label data-t="vaccinelabel">Vaccination</label>
+      <select id="sellVaccination" class="field">
+        <option value="Vaccinated" data-t="vaccinated">Vaccinated</option>
+        <option value="Not Vaccinated" data-t="notvaccinated">Not Vaccinated</option>
+      </select>
+    </div>
+
+    <div class="group">
+      <label data-t="locationlabel">Location</label>
+      <input id="sellLocation" class="field" required data-ph="locationph" placeholder="Village / Taluka / District">
+    </div>
+
+    <div class="group">
+      <label data-t="pricelabel">Expected Price</label>
+      <input id="sellPrice" class="field" type="number" min="1" required data-ph="priceph" placeholder="Enter price in ₹">
+    </div>
+
+    <div class="group full">
+      <label data-t="photolabel">Animal Photo</label>
+      <input id="sellPhoto" class="field" type="file" accept="image/*">
+    </div>
+
+    <div class="group full">
+      <label data-t="desclabel">Description</label>
+      <textarea id="sellDescription" class="field" data-ph="descph" placeholder="Add useful information about the animal..."></textarea>
+    </div>
+  </div>
+
+  <button type="submit" class="btn green" style="margin-top:20px" data-t="listbtn">List Animal</button>
+</form>
+
+
+    </section>
+
+</main>
+
+<main id="my-listings" class="page">
+
+    <section class="header">
+        <div class="wrap">
+            <h1>My Listings</h1>
+            <p>View the animals you have listed on PashuBazar.</p>
+        </div>
+    </section>
+
+    <section class="wrap">
+        <div id="myListingsContainer" class="animals">
+            <p>Login to view your listings.</p>
+        </div>
+    </section>
+
+</main>
+
+
+<main id="how" class="page">
+
+    <section class="header">
+
+        <div class="wrap">
+
+            <h1 data-t="howpage">
+                How It Works
+            </h1>
+
+            <p data-t="howpagesub">
+                PashuBazar keeps livestock buying and selling simple.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="wrap">
+
+        <div class="grid4">
+
+            <div class="card">
+
+                <div class="stepno">
+                    1
+                </div>
+
+                <h3 data-t="findh">
+                    Find
+                </h3>
+
+                <p data-t="findp">
+                    Search for animals by type, breed, location, age and price.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stepno">
+                    2
+                </div>
+
+                <h3 data-t="contacth">
+                    Contact
+                </h3>
+
+                <p data-t="contactp">
+                    Call or WhatsApp the farmer directly.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stepno">
+                    3
+                </div>
+
+                <h3 data-t="inspecth">
+                    Inspect
+                </h3>
+
+                <p data-t="inspectp">
+                    Visit the seller and check the animal yourself.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="stepno">
+                    4
+                </div>
+
+                <h3 data-t="buyh">
+                    Negotiate & Buy
+                </h3>
+
+                <p data-t="buyp">
+                    Discuss the price and complete the purchase offline.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<div id="map" style="width: 100%; height: 400px; display: none;"></div>
+
+
+<footer class="footer">
+
+    <span data-t="footer">
+        © 2026 PashuBazar — Connect. Inspect. Negotiate. Buy Offline.
+    </span>
+
+</footer>
+
+
+<!-- LOGIN MODAL -->
+
+<div id="loginModal" class="modal">
+
+    <div class="modalbox">
+
+        <button
+            class="close"
+            onclick="closeM('loginModal')">
+            ×
+        </button>
+
+        <h2 data-t="logint">
+            Login
+        </h2>
+
+        <p data-t="loginsub">
+            Login to continue using PashuBazar.
+        </p>
+
+        <form
+            class="modalform"
+            onsubmit="login(event)">
+
+            
+<label>
+    <span data-t="phone">Mobile Number / Email</span>
+    <input
+        id="loginPhone"
+        class="field"
+        type="text"
+        required
+    >
+</label>
+
+<label>
+    <span data-t="pass">Password</span>
+    <input
+        id="loginPass"
+        class="field"
+        type="password"
+        required
+    >
+</label>
+
+
+
+            <button
+                class="btn green"
+                data-t="login">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- REGISTER MODAL -->
+
+<div id="registerModal" class="modal">
+
+    <div class="modalbox">
+
+        <button
+            class="close"
+            onclick="closeM('registerModal')">
+            ×
+        </button>
+
+        <h2 data-t="regt">
+            Create Account
+        </h2>
+
+        <p data-t="regsub">
+            Create one account for buying or selling animals.
+        </p>
+
+        
+<form class="modalform" onsubmit="register(event)">
+    
+<label>
+    <span data-t="fullname">Full Name</span>
+    <input id="regName" class="field" type="text" required>
+</label>
+
+<label>
+    <span data-t="mobile">Mobile Number</span>
+    <input id="regMobile" class="field" type="tel"
+           maxlength="10" required>
+</label>
+
+<label>
+    <span data-t="pass">Password</span>
+    <input id="regPass" class="field" type="password"
+           minlength="8" required>
+</label>
+
+
+    <button type="submit" class="btn green" data-t="create">
+        Create Account
+    </button>
+</form>
+
+
+    </div>
+
+</div>
+
+
+<!-- ACCOUNT REQUIRED MODAL -->
+
+<div id="authModal" class="modal">
+
+    <div class="modalbox">
+
+        <button
+            class="close"
+            onclick="closeM('authModal')">
+            ×
+        </button>
+
+        <h2 data-t="authTitle">
+            Account Required
+        </h2>
+
+        <p data-t="authSub">
+            Please login to contact the seller.
+        </p>
+
+        <div class="actions">
+
+            <button
+                class="btn green"
+                onclick="closeM('authModal');openM('register')"
+                data-t="authCreate">
+                Create Account
+            </button>
+
+            <button
+                class="btn outline"
+                onclick="closeM('authModal');openM('login')"
+                data-t="authLogin">
+                Login
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/main.js"></script>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+</body>
+
+</html>
