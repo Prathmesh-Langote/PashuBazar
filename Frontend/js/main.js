@@ -822,9 +822,7 @@ async function loadAnimals() {
             animal.location || "",
             `₹${Number(animal.price || 0).toLocaleString("en-IN")}`,
             animal.sellerMobile || "",
-            animal.photo
-                ? `${API_BASE}${animal.photo}`
-                : "",
+            animal.photo || "",
             animal._id || ""
         ]);
 
@@ -1656,9 +1654,7 @@ async function loadMyListings() {
         }
 
         container.innerHTML = animals.map(animal => {
-            const photo = animal.photo
-                ? `${API_BASE}${animal.photo}`
-                : "";
+            const photo = animal.photo || "";
 
             const price = Number(animal.price || 0)
                 .toLocaleString("en-IN");
