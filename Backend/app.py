@@ -23,8 +23,8 @@ app.secret_key = os.getenv("SECRET_KEY")
 
 app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
-    SESSION_COOKIE_SAMESITE="Lax",
-    SESSION_COOKIE_SECURE=os.getenv("FLASK_ENV") == "production"
+    SESSION_COOKIE_SAMESITE="None",
+    SESSION_COOKIE_SECURE=True
 )
 
 frontend_url = os.getenv("FRONTEND_URL", "")
