@@ -801,7 +801,7 @@ function apply() {
     }
 
     
-const API_BASE = "http://127.0.0.1:5000";
+const API_BASE = "https://pashubazar.onrender.com";
 
 async function loadAnimals() {
     try {
