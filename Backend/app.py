@@ -350,6 +350,40 @@ def get_animals():
             "message": "Could not fetch animals."
         }), 500
 
+# Get my animal listings
+@app.route("/api/animals/my-listings", methods=["GET"])
+def get_my_listings():
+    seller_id = request.args.get("sellerId", "").strip()
+
+    if not seller_id or not ObjectId.is_valid(seller_id):
+        return jsonify({
+            "status": "error",
+            "message": "Invalid seller ID."
+        }), 400
+
+    try:
+        animals = []
+
+        cursor = animals_collection.find({
+            "sellerId": seller_id
+        }).sort("_id", -1)
+
+        for animal in cursor:
+            animal["_id"] = str(animal["_id"])
+            animals.append(animal)
+
+        return jsonify({
+            "status": "success",
+            "animals": animals
+        }), 200
+
+    except Exception:
+        app.logger.exception("Fetching my listings failed")
+
+        return jsonify({
+            "status": "error",
+            "message": "Could not fetch your listings."
+        }), 500
 
 # Get all animals for Admin Dashboard
 @app.route("/api/admin/animals", methods=["GET"])
