@@ -147,7 +147,7 @@ function renderAnimals() {
 
         if (animal.photo) {
             const img = document.createElement("img");
-            img.src = `${API_BASE}${animal.photo}`;
+            img.src = animal.photo || "";
             img.alt = animal.category || "Animal photo";
             img.onerror = () => img.remove();
             card.appendChild(img);
